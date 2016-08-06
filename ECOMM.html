@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head> 
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	
+	<link href='https://fonts.googleapis.com/css?family=Raleway:400, 600' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+	
+	
+</head>
+<style>
+nav{
+	height:70px;
+	background: white;
+
+}
+input {font-family: 'Montserrat', sans-serif;
+}
+.input-group {
+	margin-top:20px;
+	margin-left:180px;
+}
+.navbar-nav {
+	margin-top:-50px;
+	margin-right:20px;
+
+
+}
+.navbar-nav li a:hover {
+    color: white !important;
+    background-color: black !important; 
+   
+
+	 
+    
+}
+.modal-header {
+	background-color: black;
+	color:white;
+	font-family: 'Raleway', sans-serif;
+	text-align:center;
+}
+
+.modal-dailog
+{
+	max-width:400px;
+	height:800px;
+	margin:auto;
+	padding:auto;
+	margin-top:100px;
+	border-radius:0;
+	z-index: 9999;
+
+}
+.modal-footer button{
+	border-radius:1;
+	width:200px;
+	border:2px solid black;
+	background-color: white;
+	font-family: 'Raleway', sans-serif;
+	color:black;
+}
+.modal-footer {
+	background-color:black;
+	
+}
+.modal-footer button:hover{
+	background: white;
+	color:black;
+	border:2px solid white;
+}
+</style>
+
+
+<body>
+<header>
+<nav class="navbar navbar-default">
+	<div class="navbar-header" style="margin-top:10px;">	
+		<a class="navbar-brand" href="#" style="font-family: 'Montserrat', sans-serif;font-size:26px">AKUA<b><i>KART</i></b></a>
+		</div>
+
+	
+		
+		
+			<div class="input-group" style="max-width:400px">
+					<input type="text" placeholder="Search for a product,Brand or Category" class="form-control" >
+					<a class="input-group-addon" href="#">
+						<span class="glyphicon glyphicon-search"></span>
+					</a>
+				</div>
+
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#mymodal"style="color:black;font-size:12px;font-family: 'Montserrat', sans-serif" data-toggle="modal" >Log In</a></li>
+			<li><a href="#mymodal1" style="color:black ;font-size:12px ;font-family: 'Montserrat', sans-serif;s" data-toggle="modal" >Sign Up</a></li>
+			</ul>
+		
+
+</nav>
+</header>
+<div class="modal fade slideanim1" id="mymodal">
+		<div class="modal-dailog ">
+			<div class="modal-content" >
+				<div class="modal-header" style="border-top:4px solid white">
+					<h3 class="modal-title"> Log In </h3>
+						<button class="close" data-dismiss="modal" style="color:white"> X </button>
+						</div>
+
+					<div class="modal-body center-block">
+						<form class="form-group" name="form1">
+							<label style="font-family: 'Raleway', sans-serif">Email</label><br>
+							<input type="email" class="form-control" placeholder="Email" style="max-width:300px" id="email"><br>
+							<label style="font-family: 'Raleway', sans-serif">Passowrd</label>
+							<br>
+							<input type="password" class="form-control" placeholder="Password" style="max-width:300px" id="pass"><br>
+							
+								
+		
+						</form>
+					</div>
+
+				<div class="modal-footer" >
+
+					
+					<button class="btn btn-default center-block" role="submit">Log In</button>
+
+					</div>
+
+					</div>
+					</div>
+					</div>
+
+
+<div class="modal fade slideanim1" id="mymodal1">
+		<div class="modal-dailog">
+			<div class="modal-content">
+				<div class="modal-header" style="border-top:4px solid white">
+					<h3 class="modal-title">Sign Up</h3>
+						<button class="close" data-dismiss="modal" style="color:white"> X </button>
+						</div>
+
+					<div class="modal-body center-block">
+						<form class="form-group" name="form1">
+							<label style="font-family: 'Raleway', sans-serif">Email</label><br>
+							<input type="email" class="form-control" placeholder="Email" style="max-width:300px" id="email"><br>
+							<label style="font-family: 'Raleway', sans-serif">Username</label><br>
+							<input type="text" class="form-control" placeholder="Username" style="max-width:300px" id="uname"><br>
+							<label style="font-family: 'Raleway', sans-serif">Passowrd</label>
+							<br>
+							<input type="password" class="form-control" placeholder="Password" style="max-width:300px" id="pass"><br>
+							<label style="font-family: 'Raleway', sans-serif">Confirm Passowrd</label>
+							<br>
+							<input type="password" class="form-control" placeholder="Confirm Password" style="max-width:300px" id="cpass"><br>
+
+							
+								
+		
+						</form>
+					</div>
+
+				<div class="modal-footer" >
+
+					
+					<button class="btn btn-default center-block" role="submit">Sign Up</button>
+
+					</div>
+
+					</div>
+					</div>
+					</div>
+
+
+
+<main>
+</main>
+</body>
+</html>
