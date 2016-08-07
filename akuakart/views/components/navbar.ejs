@@ -1,0 +1,50 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" style="margin-bottom:0px">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><b>AKUA</b>KART</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            <form class="navbar-form navbar-left" method="GET" action="/search">
+                <div class="input-group">
+                  <input name="q" type="text" class="form-control" placeholder="Search for products">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-default" type="button">Search</button>
+                  </span>
+                </div>
+            </form>
+
+
+
+            <div class="navbar-form navbar-right">
+                <% if(!isLoggedIn){ %>
+                <form method="POST" action="/auth/login">
+                    <div class="form-group">
+                        <input name="username" type="text" placeholder="Username / Email" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input name="password" type="password" placeholder="Password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                    &nbsp;
+                    <a class="btn btn-success" data-toggle="modal" data-target="#registerModal">Register</a>
+                </form>
+                <% }else{ %>
+                    <% if(user.isSeller){ %>
+                        <a class="btn btn-primary" href="/seller/dashboard">Seller dashboard</a>
+                    <% } %>
+                    <span style="color:white"><%= user.username %> | <%= user.email %></span>
+                <a class="btn btn-success" href="/auth/logout">Logout</a>
+                <% } %>
+            </div>
+        </div><!--/.navbar-collapse -->
+    </div>
+</nav>
+<div style="height:50px">
+</div>

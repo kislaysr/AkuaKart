@@ -1,0 +1,15 @@
+<style>
+li.cat.collapsed ul{
+    display : none;
+}
+</style>
+<ul style="list-style-type:disc">
+    <% categories.forEach(function(cat){ %>
+        <li><h5><b><a href="/category/<%- cat %>"><%= cat %></a></b></h5></li>
+        <ul>
+            <% subcategories[cat].forEach(function(subcat){ %>
+                <li><a href="/category/<%- cat %>/<%- subcat %>"><%= subcat %></a></li>
+            <% }) %>
+        </ul>
+    <% }) %>
+</ul>

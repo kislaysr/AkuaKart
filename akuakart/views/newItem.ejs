@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AUAKART - The kart for everyone</title>
+
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/notify.js"></script>
+
+</head>
+<body ng-app="akuakart" ng-controller="akuakartController">
+
+    <%- include('components/navbar') %>
+
+    <div class="container">
+        <h2>ADD NEW ITEM FORM.</h2>
+
+        <form role="form" action="/item/add" method="POST" enctype="multipart/form-data">
+            <input type="hidden" id="_id" name="_id" ng-model="item._id">
+        <div class="form-group">
+          <label for="title">Product title:</label>
+          <input type="text" class="form-control" id="title" name="title" ng-model="item.title">
+        </div>
+        <div class="form-group">
+          <label for="cost">Product Cost:</label>
+          <input type="text" class="form-control" id="cost" name="cost" ng-model="item.cost">
+        </div>
+          <div class="form-group">
+            <label for="description">Description :</label>
+            <textarea class="form-control" id="description" name="description" ng-model="item.description"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="tags">Tags (seperated by commas) :</label>
+            <input type="text" class="form-control" id="tags" name="tags" ng-model="item.tags">
+          </div>
+
+          <div class="form-group">
+              <label for="category">Select Category :</label>
+              <select class="form-control" id="category" name="category" ng-model="item.category">
+                  <option ng-repeat="cat in categories" ng-value="cat">{{cat}}</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label for="subcategory">Select Sub-Category :</label>
+              <select class="form-control" id="subcategory" name="subcategory" ng-model="item.subcategory">
+                  <option ng-repeat="subcat in subcategories[item.category]" ng-value="subcat">{{subcat}}</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label class="control-label">Select Image file</label>
+              <input id="imageFile" type="file" class="file" name="image">
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox"> I have reviewed all information.</label>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+
+    </div>
+
+    <script>
+
+    <% if(errMsg){ %>
+        setTimeout(function(){
+            $.notify("<%= errMsg %>","error");
+        },500);
+    <% } %>
+
+    <% if(msg){ %>
+        setTimeout(function(){
+            $.notify("<%= msg %>","success");
+        },500);
+    <% } %>
+
+    var app = angular.module("akuakart",[]);
+    var itemId = "<%= itemId %>";
+    var scope;
+    app.controller("akuakartController",function($scope,$http){
+        scope = $scope;
+        if(itemId != ""){
+            $http({
+                method: 'GET',
+                url: '/api/item/'+itemId
+            }).then(function successCallback(response) {
+                $scope.item = response.data;
+                $("#_id").val($scope.item._id);
+            }, function errorCallback(response) {
+                $.notify("Product edit not possible","error");
+            });
+        }
+
+        $http({
+            method : 'GET',
+            url : '/api/categories'
+        }).then(function successCallback(response) {
+            $scope.categories = response.data.categories;
+            $scope.subcategories = response.data.subcategories;
+        }, function errorCallback(response) {
+            $.notify("Product edit not possible","error");
+        });
+    });
+
+    </script>
+</body>
+</html>

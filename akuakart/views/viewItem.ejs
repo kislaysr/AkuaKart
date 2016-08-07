@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AKUAKART - Seller dashboard</title>
+
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/notify.js"></script>
+
+</head>
+<body ng-app="akuakart" ng-controller="akuakartController">
+
+    <%- include('components/navbar') %>
+
+    <div class="container" style="padding-top:10px">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="well">
+                    <h4>
+                        Shop by categories
+                    </h4>
+                    <%- include('components/categoryTree') %>
+                </div>
+            </div>
+            <div class="col-sm-9 well">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        Now in category :
+                        <%- createCategoryLink(item) %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h2><%= item.title %></h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <center>
+                            <img src="/item/img/<%- item._id %>" class="img-thumbnail" style="max-height:250px">
+                        </center>
+                    </div>
+                    <div class="col-sm-9">
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <center>
+                            <p> Item : New</p><br/>
+                            <p>Quantity  <input type="text" style="width:50px" value=1> </p><br/>
+                            <p>Price       <span><b>Rs.  235.00 </b></span>  </p>
+                            <button class="btn btn-success" style="border-radius:1; width:250px">Buy Now</button>
+                        </center>
+                    </div>
+                    <div class="col-sm-4">
+                        <h3>Seller information</h3>
+                        <br/>
+                        100% Positive feedback
+                        <br/>
+                        Alias :
+                        <span class="text-primary">
+                            <%= item.seller.seller.alias %>
+                        </span>
+                        <br/>
+                        <a href="">See other items</a>
+                    </div>
+                </div>
+
+                        <br>
+                        <br>
+                        <center>
+                            <div class="det">
+                                <p>Shipping   <span><b>FREE, Delivery Anywhere in India. |</b></span> </p>
+                                <br>
+                                <p>Payment    <span><b>(Credit card, EMI, Debit card, Online Bank Transfer) |</b></span> </p>
+                                <br>
+                                <p>Returns    <span><b>Replacement and refund for this product is covered through |</b></span> </p>
+                            </div>
+                        </center>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    <% if(errMsg){ %>
+        setTimeout(function(){
+            $.notify("<%= errMsg %>","error");
+        },500);
+    <% } %>
+
+    <% if(msg){ %>
+        setTimeout(function(){
+            $.notify("<%= msg %>","success");
+        },500);
+    <% } %>
+
+    var app = angular.module("akuakart",[]);
+    app.controller("akuakartController",function($scope,$http){
+        $scope.register = function(){
+            if($scope.registerForm.password != $scope.confirmPasswordInput){
+                return $.notify("Passwords do not match","erorr");
+            }
+            console.log($scope.registerForm);
+            $http({
+                method : 'POST',
+                url : '/auth/register',
+                //data : 'username='+$scope.username+'&email='+$scope.email+"&password="+$scope.password,
+                data : $scope.registerForm
+                //headers : {'Content-Type' : 'application/json'}
+            }).success(function(data) {
+                if(data.err){
+                    $.notify(data.message,"error");
+                }else{
+                    $.notify("User successfully registered","success");
+                    $("#registerModal").modal("hide");
+                }
+            }).error(function(data) {
+                $.notify("Error");
+            });
+        }
+    });
+
+    </script>
+</body>
+</html>

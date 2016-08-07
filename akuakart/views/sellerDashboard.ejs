@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AKUAKART - Seller dashboard</title>
+
+    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/jquery.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/notify.js"></script>
+
+</head>
+<body ng-app="akuakart" ng-controller="akuakartController">
+
+    <%- include('components/navbar') %>
+
+    <div class="container" style="padding-top:10px">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="well">
+                    <h4>
+                        Shop by categories
+                    </h4>
+                    <%- include('components/categoryTree') %>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <div class="well">
+                    <a class="btn btn-primary btn-lg" style="width:100%" href="/item/new">ADD NEW ITEM</a>
+                    <h2>CURRENT SELLING ITEMS</h2>
+                    <hr/>
+                    <% items.forEach(function(item){ %>
+                        <div class="row">
+                            <div class="pull-right">
+                                <a class="btn btn-xs btn-info" href="/item/edit/<%= item._id %>" >Edit</a>
+                                <a class="btn btn-xs btn-danger" href="/item/remove/<%= item._id %>" ><b>X</b> Remove</a>
+                            </div>
+                        </div>
+                        <%- include('components/item',{item : item}) %>
+                        <hr/>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="registerModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">REGISTER</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username" ng-model="registerForm.username">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email" ng-model="registerForm.email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" ng-model="registerForm.password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Confirm password" ng-model="confirmPasswordInput">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="register()">Sign me up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+    <% if(errMsg){ %>
+        setTimeout(function(){
+            $.notify("<%= errMsg %>","error");
+        },500);
+    <% } %>
+
+    <% if(msg){ %>
+        setTimeout(function(){
+            $.notify("<%= msg %>","success");
+        },500);
+    <% } %>
+
+    var app = angular.module("akuakart",[]);
+    app.controller("akuakartController",function($scope,$http){
+        $scope.register = function(){
+            if($scope.registerForm.password != $scope.confirmPasswordInput){
+                return $.notify("Passwords do not match","erorr");
+            }
+            console.log($scope.registerForm);
+            $http({
+                method : 'POST',
+                url : '/auth/register',
+                //data : 'username='+$scope.username+'&email='+$scope.email+"&password="+$scope.password,
+                data : $scope.registerForm
+                //headers : {'Content-Type' : 'application/json'}
+            }).success(function(data) {
+                if(data.err){
+                    $.notify(data.message,"error");
+                }else{
+                    $.notify("User successfully registered","success");
+                    $("#registerModal").modal("hide");
+                }
+            }).error(function(data) {
+                $.notify("Error");
+            });
+        }
+    });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-sm-4">
+        <img src="/item/img/<%- item._id %>" class="img-thumbnail" style="width:100%">
+    </div>
+    <div class="col-sm-8">
+        <a href="/item/view/<%- item._id %>/" style="font-size: 16px"><%= item.title %></a>
+        <br/>
+        <span class="text-success">
+            Category : <%- createCategoryLink(item) %>
+        </span>
+        <br/>
+        <span class="text-muted">
+            <%= item.tags.join(" | ") %>
+        </span>
+        <h3>Rs. <%= item.cost %></h3>
+        <span class="text-muted">
+            Sold by : <a href="/seller/?id=<%= item.seller._id %>"><%= item.seller.seller.alias %></a>
+        </span>
+        <br/>
+        <span class="text-primary">Free shpping</span>
+    </div>
+</div>
