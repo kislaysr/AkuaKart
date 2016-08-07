@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>AKUA_cart</title>
+  <!-- BOOTSTRAP STYLE SHEET -->
+  <link href="css/bootstrap.css" rel="stylesheet" />
+  <!-- FONT AWESOME ICONS STYLE SHEET -->
+  <link href="css/font-awesome.css" rel="stylesheet" />
+  <!-- CUSTOM STYLES -->
+  <!--<link href="css/style.css" rel="stylesheet" /> -->
+  <link href="css/animate.css" rel="stylesheet" />
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400, 600' rel='stylesheet' type='text/css'>
+
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+  <style>
+  /*body{
+  background: url('img/4.jpg') no-repeat center center;
+  background-size: cover;
+  } */
+  #loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  margin: -75px 0 0 -75px;
+  border: 4px solid rgba(255, 255, 255, 0.3);;
+  border-radius: 50%;
+  border-top: 4px solid #555;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 2s;
+  animation-name: animatebottom;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+#container {
+  display: none;
+  text-align: center;
+}
+  nav{
+    height:70px;
+    background: white;
+  }
+  input {font-family: 'Montserrat', sans-serif;
+}
+.input-group {
+  margin-top:20px;
+  margin-left:180px;
+}
+.navbar-nav {
+  margin-top:-50px;
+  margin-right:20px;
+}
+.navbar-nav li a:hover {
+  color: white !important;
+  background-color: black !important;
+}
+.modal-header {
+  background-color: black;
+  color:white;
+  font-family: 'Raleway', sans-serif;
+  text-align:center;
+}
+.modal-dailog
+{
+  max-width:400px;
+  height:800px;
+  margin:auto;
+  padding:auto;
+  margin-top:100px;
+  border-radius:0;
+  z-index: 9999;
+}
+.modal-footer button{
+  border-radius:1;
+  width:200px;
+  border:2px solid black;
+  background-color: white;
+  font-family: 'Raleway', sans-serif;
+  color:black;
+}
+.modal-footer {
+  background-color:black;
+}
+.modal-footer button:hover{
+  background: white;
+  color:black;
+  border:2px solid white;
+}
+body {
+  background: linear-gradient(150deg,#eaf0fa,#a6e1f5,#adc3eb);
+  background-size: 800% 800%;
+  animation:grad 30s ease infinite;
+}
+@-webkit-keyframes grad {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.thumbnail{
+  max-width: 200px;
+  max-height: 200px;
+  margin-left: 40px;
+  margin-top: 150px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 50px rgba(220, 220, 220, 0.5);;
+  border-radius: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 15px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1);
+}
+#carousel-example-generic{
+  height:400px;
+}
+.categories{
+  max-height: 400px;
+  overflow: auto;
+}
+.btn-default{
+  padding: 15px 40px;
+}
+.container{
+  margin-top: 50px;
+}
+.sponsors{
+  max-width:300px;
+  max-height: 150px;
+  margin: 5px;
+  overflow: hidden;
+}
+.addv{
+  max-height: 400px;
+  overflow: auto;
+}
+.jumbotron{
+  margin-top: 100px;
+  margin-bottom: -100px;
+  background-color: black;
+}
+
+</style>
+</head>
+<body onload="myFunction()">
+
+
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="navbar-header" style="margin-top:10px;">
+        <a class="navbar-brand" href="#" style="font-family: 'Montserrat', sans-serif;font-size:26px"><b>AKUA</b><i>kart</i></a>
+      </div>
+      <div class="input-group" style="max-width:400px">
+        <input type="text" placeholder="Search for a product,Brand or Category" class="form-control" >
+        <a class="input-group-addon" href="#">
+          <span class="glyphicon glyphicon-search"></span>
+        </a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#mymodal"style="color:black;font-size:12px;font-family: 'Montserrat', sans-serif" data-toggle="modal" >Log In</a></li>
+        <li><a href="#mymodal1" style="color:black ;font-size:12px ;font-family: 'Montserrat', sans-serif" data-toggle="modal" >Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div class="modal fade " id="mymodal">
+    <div class="modal-dailog ">
+      <div class="modal-content" >
+        <div class="modal-header" style="border-top:4px solid white">
+          <h3 class="modal-title"> Log In </h3>
+          <button class="close" data-dismiss="modal" style="color:white"> X </button>
+        </div>
+        <div class="modal-body center-block">
+          <form class="form-group" name="form1">
+            <label style="font-family: 'Raleway', sans-serif">Email</label><br>
+            <input type="email" class="form-control" placeholder="Email" style="max-width:300px" id="email"><br>
+            <label style="font-family: 'Raleway', sans-serif">Passowrd</label>
+            <br>
+            <input type="password" class="form-control" placeholder="Password" style="max-width:300px" id="pass"><br>
+          </form>
+        </div>
+        <div class="modal-footer" >
+          <button class="btn btn-default center-block" role="submit">Log In</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="mymodal1">
+    <div class="modal-dailog">
+      <div class="modal-content">
+        <div class="modal-header" style="border-top:4px solid white">
+          <h3 class="modal-title">Sign Up</h3>
+          <button class="close" data-dismiss="modal" style="color:white"> X </button>
+        </div>
+        <div class="modal-body center-block">
+          <form class="form-group" name="form1">
+            <label style="font-family: 'Raleway', sans-serif">Email</label><br>
+            <input type="email" class="form-control" placeholder="Email" style="max-width:300px" id="email"><br>
+            <label style="font-family: 'Raleway', sans-serif">Username</label><br>
+            <input type="text" class="form-control" placeholder="Username" style="max-width:300px" id="uname"><br>
+            <label style="font-family: 'Raleway', sans-serif">Passowrd</label>
+            <br>
+            <input type="password" class="form-control" placeholder="Password" style="max-width:300px" id="pass"><br>
+            <label style="font-family: 'Raleway', sans-serif">Confirm Passowrd</label>
+            <br>
+            <input type="password" class="form-control" placeholder="Confirm Password" style="max-width:300px" id="cpass"><br>
+          </form>
+        </div>
+        <div class="modal-footer" >
+          <button class="btn btn-default center-block" role="submit">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="loader"></div>
+  <div class="container animate-bottom">
+    <div class="row">
+      <div class="col-xs-12 col-md-3 categories">
+        <ul class="list-group">
+          <li class="list-group-item"><b>CATEGORIES</b></li>
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+          </ol>
+
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              <img src="img/3.jpg" alt="Offers">
+              <div class="carousel-caption">
+                <p>bej ewfnn hfw dnufhu xooic xbwc cienix cwubebc endnwjb cewqbcibhc ncjbewiubf  cwqbuib cijwqbif</p>
+              </div>
+            </div>
+            <div class="item">
+              <img src="img/5.jpg" alt="Offers">
+              <div class="carousel-caption">
+                <p>bej ewfnn hfw dnufhu xooic xbwc cienix cwubebc endnwjb cewqbcibhc ncjbewiubf  cwqbuib cijwqbif</p>
+              </div>
+            </div>
+            <div class="item">
+              <img src="img/3.jpg" alt="Offers">
+              <div class="carousel-caption">
+                <p>bej ewfnn hfw dnufhu xooic xbwc cienix cwubebc endnwjb cewqbcibhc ncjbewiubf  cwqbuib cijwqbif</p>
+              </div>
+            </div>
+            <div class="item">
+              <img src="img/5.jpg" alt="Offers">
+              <div class="carousel-caption">
+                <p>bej ewfnn hfw dnufhu xooic xbwc cienix cwubebc endnwjb cewqbcibhc ncjbewiubf  cwqbuib cijwqbif</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" data-target="#carousel-example-generic">
+            <span class="glyphicon glyphicon-chevron-left sr-only" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control"  href="#carousel-example-generic"  role="button" data-slide="next" data-target="#carousel-example-generic">
+            <span class="glyphicon glyphicon-chevron-right sr-only" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-3 addv">
+        <ul class="list-group">
+          <li class="list-group-item sponsors"><img src="img/6.jpg"></li>
+          <li class="list-group-item sponsors"><img src="img/6.jpg"></li>
+          <li class="list-group-item sponsors"><img src="img/6.jpg"></li>
+        </ul>
+
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+
+        </a>
+
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+
+        </a>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+        </a>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+        </a>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+        </a>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+        </a>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+        </a>
+      </div>
+    </div><div class="row">
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+        </a>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+        </a>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img/2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+        </a>
+        <div class="rw-ui-container" data-title="my 1awesome rating"></div>
+      </div>
+      <div class="col-xs-6 col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="img\2.png" alt="...">
+          <h3> Product Name </h3>
+          <p> Product Info </p>
+          <div class="rw-ui-container" data-title="my awesome rating"></div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+  <footer class="jumbotron"></footer>
+
+
+  <!-- Calling jquery first -->
+  <script language="JavaScript" type="text/javascript" src="js/jquery.js"></script>
+  <script language="JavaScript" type="text/javascript" src="js/bootstrap.js"></script>
+  <!-- Carousel -->
+  <script language="JavaScript" type="text/javascript">
+  $(document).ready(function(){
+    $('.carousel').carousel({
+      interval: 3000
+    })
+  });
+  var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 5000);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("container").style.display = "block";
+}
+
+  </script>
+  <script type="text/javascript">(function(d, t, e, m){
+
+    // Async Rating-Widget initialization.
+    window.RW_Async_Init = function(){
+
+        RW.init({
+            huid: "323908",
+            uid: "2330b75c5cd232e442de55e85dff041e",
+            source: "website",
+            options: {
+                "advanced": {
+                    "layout": {
+                        "align": {
+                            "hor": "center",
+                            "ver": "top"
+                        }
+                    }
+                },
+                "size": "medium",
+                "style": "oxygen",
+                "isDummy": false
+            }
+        });
+        RW.render();
+    };
+        // Append Rating-Widget JavaScript library.
+    var rw, s = d.getElementsByTagName(e)[0], id = "rw-js",
+        l = d.location, ck = "Y" + t.getFullYear() +
+        "M" + t.getMonth() + "D" + t.getDate(), p = l.protocol,
+        f = ((l.search.indexOf("DBG=") > -1) ? "" : ".min"),
+        a = ("https:" == p ? "secure." + m + "js/" : "js." + m);
+    if (d.getElementById(id)) return;
+    rw = d.createElement(e);
+    rw.id = id; rw.async = true; rw.type = "text/javascript";
+    rw.src = p + "//" + a + "external" + f + ".js?ck=" + ck;
+    s.parentNode.insertBefore(rw, s);
+    }(document, new Date(), "script", "rating-widget.com/"));</script>
+</body>
+</html>
